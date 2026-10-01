@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Store | Tự Tin Tỏa Sáng Với BST Thời Trang Nữ Tối Giản & Thanh Lịch</title>
+    <meta name="description" content="Aura Store - Thương hiệu thời trang nữ thiết kế tối giản, thanh lịch và dẫn đầu xu hướng. Mua ngay trên TikTok và Facebook với ưu đãi độc quyền giảm đến 40%.">
+    
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        aura: {
+                            50: '#FDFBF7',
+                            100: '#FAF6EE',
+                            200: '#F4ECE0',
+                            300: '#EBDCCE',
+                            400: '#DEC6B4',
+                            500: '#C5A88E',
+                            600: '#A9876C',
+                            700: '#87674E',
+                            800: '#4A3B32',
+                            900: '#231B16',
+                            charcoal: '#1E1A18',
+                        },
+                        facebook: '#1877F2',
+                        tiktok: '#000000',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FAF6EE;
+            color: #231B16;
+            overflow-x: hidden;
+        }
+        .pulse-subtle {
+            animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(197, 168, 142, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(197, 168, 142, 0); }
+            100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(197, 168, 142, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-aura-300 selection:text-aura-900">
+
+    <!-- TOP ANNOUNCEMENT BAR (Tính cấp bách & Freeship) -->
+    <div class="bg-aura-800 text-aura-100 text-xs sm:text-sm py-2.5 px-4 text-center sticky top-0 z-50 shadow-sm border-b border-aura-700/30">
+        <div class="max-w-6xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+            <span class="inline-flex items-center justify-center bg-aura-600 text-white text-[11px] font-medium px-2 py-0.5 rounded-full animate-pulse">
+                HOT DEAL
+            </span>
+            <span class="font-normal">Ưu đãi ra mắt BST Thu - Đông: <strong class="text-amber-200 font-semibold">Giảm 40% + Freeship Toàn Quốc</strong></span>
+            <span class="hidden md:inline text-aura-400">|</span>
+            <span class="flex items-center gap-1.5 text-xs text-aura-200">
+                <i class="fa-regular fa-clock"></i> Kết thúc sau: 
+                <span id="banner-countdown" class="font-mono font-bold text-amber-200">03:42:15</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-aura-50/90 backdrop-blur-md border-b border-aura-200/70 sticky top-9 z-40 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center group">
+                <span class="font-serif text-2xl sm:text-3xl tracking-widest uppercase font-bold text-aura-900 group-hover:text-aura-700 transition">AURA</span>
+            </a>
+
+            <!-- Quick Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-aura-800">
+                <a href="#hero" class="hover:text-aura-600 transition">Trang Chủ</a>
+                <a href="#features" class="hover:text-aura-600 transition">Đặc Quyền BST</a>
+                <a href="#bestseller" class="hover:text-aura-600 transition">Best-Seller</a>
+                <a href="#feedback" class="hover:text-aura-600 transition">Khách Hàng Nói Gì</a>
+                <a href="#offer" class="text-aura-700 font-semibold hover:text-aura-900 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping inline-block"></span> Ưu Đãi Giới Hạn
+                </a>
+            </nav>
+
+            <!-- Quick Action Platforms -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-facebook/10 text-facebook border border-facebook/30 hover:bg-facebook hover:text-white transition shadow-sm">
+                    <i class="fa-brands fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-black text-white hover:bg-neutral-800 transition shadow-sm">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         BƯỚC 1: HERO SECTION (Thu hút chú ý 3s đầu - Attention)
+         ========================================== -->
+    <section id="hero" class="relative overflow-hidden pt-8 pb-16 lg:py-24 bg-gradient-to-b from-aura-100 via-aura-50 to-aura-100">
+        <!-- Background Decorative Circles -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-aura-300/30 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 -left-20 w-80 h-80 rounded-full bg-aura-400/20 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Left Content: High-Impact Copywriting -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    
+                    <!-- Pre-headline Tag -->
+                    <div class="inline-flex items-center gap-2 bg-aura-200/80 border border-aura-300 px-3.5 py-1.5 rounded-full text-xs font-medium text-aura-800 tracking-wide mx-auto lg:mx-0 shadow-sm">
+                        <i class="fa-solid fa-sparkles text-amber-600"></i>
+                        <span>NEW COLLECTION 2026 • PHONG CÁCH TỐI GIẢN CAO CẤP</span>
+                    </div>
+
+                    <!-- H1 Main Headline -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif italic font-normal tracking-tight text-aura-800 leading-[1.2]">
+                        Tỏa sáng phong cách riêng của mình
+                    </h1>
+
+                    <!-- Subheadline & USP -->
+                    <p class="text-base sm:text-lg text-aura-800/85 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                        Mỗi thiết kế từ <strong>AURA</strong> là sự giao thoa giữa nét thanh lịch và tinh thần hiện đại, được chăm chút trong từng đường nét để tôn lên vóc dáng, khí chất và vẻ đẹp riêng của mỗi cô gái. <strong>AURA</strong> không chỉ giúp bạn mặc đẹp, mà còn giúp bạn tự tin tỏa sáng và trở thành phiên bản cuốn hút nhất của chính mình trong mọi khoảnh khắc.
+                    </p>
+
+                    <!-- Key highlights badges -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs sm:text-sm text-aura-800 font-medium pt-1">
+                        <span class="flex items-center gap-1.5 bg-white/70 backdrop-blur px-3 py-1.5 rounded-lg border border-aura-200">
+                            <i class="fa-solid fa-check text-green-600"></i> Tôn Lên Vẻ Đẹp Riêng
+                        </span>
+                        <span class="flex items-center gap-1.5 bg-white/70 backdrop-blur px-3 py-1.5 rounded-lg border border-aura-200">
+                            <i class="fa-solid fa-check text-green-600"></i> Nâng Tầm Thần Thái
+                        </span>
+                        <span class="flex items-center gap-1.5 bg-white/70 backdrop-blur px-3 py-1.5 rounded-lg border border-aura-200">
+                            <i class="fa-solid fa-check text-green-600"></i> Đổi Trả Miễn Phí 7 Ngày
+                        </span>
+                    </div>
+
+                    <!-- Call To Action (Dual Platform Focus) -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#offer" class="pulse-subtle w-full sm:w-auto px-8 py-4 rounded-xl bg-aura-800 text-aura-50 font-bold text-base hover:bg-aura-900 transition flex items-center justify-center gap-2 shadow-lg">
+                            <span>Săn Ưu Đãi Ra Mắt -40%</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+
+                        <div class="flex items-center gap-3 w-full sm:w-auto justify-center">
+                            <!-- TikTok Shop Button -->
+                            <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+                               class="flex-1 sm:flex-none px-5 py-3.5 rounded-xl bg-black text-white hover:bg-neutral-800 font-semibold text-sm transition flex items-center justify-center gap-2 shadow-md">
+                                <i class="fa-brands fa-tiktok text-lg"></i>
+                                <span>Mua tại TikTok</span>
+                            </a>
+                            <!-- Facebook Button -->
+                            <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                               class="flex-1 sm:flex-none px-5 py-3.5 rounded-xl bg-facebook text-white hover:opacity-90 font-semibold text-sm transition flex items-center justify-center gap-2 shadow-md">
+                                <i class="fa-brands fa-facebook text-base"></i>
+                                <span>Mua tại Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Micro Social Trust Under CTA -->
+                    <div class="pt-3 flex items-center justify-center lg:justify-start gap-3 text-xs text-aura-700">
+                        <div class="flex -space-x-2">
+                            <img class="inline-block h-7 w-7 rounded-full ring-2 ring-aura-100 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Customer Avatar">
+                            <img class="inline-block h-7 w-7 rounded-full ring-2 ring-aura-100 object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Customer Avatar">
+                            <img class="inline-block h-7 w-7 rounded-full ring-2 ring-aura-100 object-cover" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=80" alt="Customer Avatar">
+                            <img class="inline-block h-7 w-7 rounded-full ring-2 ring-aura-100 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Customer Avatar">
+                        </div>
+                        <p class="font-medium">Hơn <span class="font-bold text-aura-900">12,500+</span> cô nàng hiện đại đã chọn Aura để nâng tầm phong cách</p>
+                    </div>
+
+                </div>
+
+                <!-- Right Visual: High-Fashion Minimalist Lookbook Gallery -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-sm lg:max-w-none">
+                        
+                        <!-- Main Lookbook Image -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-aura-200">
+                            <img src="ảnh bìa.jpg" 
+                                 alt="Aura Store Lookbook 2026 - Thời trang nữ thanh lịch màu be nude" 
+                                 class="w-full h-[460px] sm:h-[520px] object-cover object-center hover:scale-105 transition duration-700">
+                            
+                            <!-- Floating Tag: Top Trending -->
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5 text-xs font-bold text-aura-900">
+                                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                <span>#1 Xu Hướng TikTok OOTD</span>
+                            </div>
+
+                            <!-- Floating Price Tag inside Lookbook -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-xl shadow-lg border border-aura-200 flex items-center justify-between">
+                                <div>
+                                    <p class="text-[11px] font-semibold text-aura-600 uppercase tracking-wider">BST Aura Silk Silhouette</p>
+                                    <h4 class="text-sm font-bold text-aura-900">Đầm Linen Nude Tôn Dáng Tự Nhiên</h4>
+                                    <div class="flex items-center gap-2 mt-0.5">
+                                        <span class="text-base font-bold text-red-600">389.000₫</span>
+                                        <span class="text-xs text-neutral-400 line-through">650.000₫</span>
+                                        <span class="text-[10px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-bold">-40%</span>
+                                    </div>
+                                </div>
+                                <a href="#offer" class="h-9 w-9 rounded-full bg-aura-800 text-white flex items-center justify-center hover:bg-aura-900 transition">
+                                    <i class="fa-solid fa-arrow-down text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Accent Floating Card: Facebook & TikTok Verified -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-3 rounded-xl shadow-xl border border-aura-200 hidden sm:flex items-center gap-3 max-w-[210px]">
+                            <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-aura-900">100% Chính Hãng</p>
+                                <p class="text-[10px] text-neutral-500 leading-tight">Độc quyền thiết kế tại Aura Studio</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute -top-4 -right-4 bg-white/95 backdrop-blur px-3 py-2 rounded-xl shadow-lg border border-aura-200 hidden sm:flex items-center gap-2">
+                            <div class="text-amber-400 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-xs font-bold text-aura-900">4.9/5 (1.8k+)</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BƯỚC 2: SOCIAL PROOF (Xây dựng niềm tin ban đầu - Trust)
+         ========================================== -->
+    <section id="social-proof" class="py-12 bg-white border-y border-aura-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Real Validation Metrics Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center border-b border-aura-100 pb-10">
+                <div class="p-3">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-aura-900 tracking-tight">85.000+</p>
+                    <p class="text-xs sm:text-sm text-aura-600 font-medium mt-1 flex items-center justify-center gap-1">
+                        <i class="fa-brands fa-tiktok text-black"></i> Follower trên TikTok
+                    </p>
+                </div>
+                <div class="p-3">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-aura-900 tracking-tight">18.600+</p>
+                    <p class="text-xs sm:text-sm text-aura-600 font-medium mt-1 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-box text-facebook"></i> Đơn Đã Giao Thành Công
+                    </p>
+                </div>
+                <div class="p-3">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-aura-900 tracking-tight">4.9 / 5.0</p>
+                    <p class="text-xs sm:text-sm text-aura-600 font-medium mt-1 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-star text-amber-500"></i> Đánh Giá 5 Sao Facebook
+                    </p>
+                </div>
+                <div class="p-3">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-aura-900 tracking-tight">98.4%</p>
+                    <p class="text-xs sm:text-sm text-aura-600 font-medium mt-1 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-heart text-red-500"></i> Khách Hàng Sẽ Mua Lại
+                    </p>
+                </div>
+            </div>
+
+            <!-- Authentic Trust Badges & Guarantee Ribbon -->
+            <div class="pt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="flex items-center gap-3.5 p-4 rounded-xl bg-aura-50/70 border border-aura-200">
+                    <div class="w-11 h-11 rounded-lg bg-aura-200 text-aura-800 flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-aura-900">Cam Kết Ảnh Thật 100%</h4>
+                        <p class="text-xs text-aura-700">Mẫu độc quyền tự chụp, giống hình 100%</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3.5 p-4 rounded-xl bg-aura-50/70 border border-aura-200">
+                    <div class="w-11 h-11 rounded-lg bg-aura-200 text-aura-800 flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-aura-900">Đồng Kiểm Khi Nhận</h4>
+                        <p class="text-xs text-aura-700">Kiểm tra ưng ý mới thanh toán tiền</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3.5 p-4 rounded-xl bg-aura-50/70 border border-aura-200">
+                    <div class="w-11 h-11 rounded-lg bg-aura-200 text-aura-800 flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-aura-900">Đổi Trả Trong 7 Ngày</h4>
+                        <p class="text-xs text-aura-700">Hỗ trợ đổi size tận nơi nhanh chóng</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3.5 p-4 rounded-xl bg-aura-50/70 border border-aura-200">
+                    <div class="w-11 h-11 rounded-lg bg-aura-200 text-aura-800 flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-bolt text-amber-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-aura-900">Hỏa Tốc 2 Giờ</h4>
+                        <p class="text-xs text-aura-700">Giao nhanh nội thành HN & TP.HCM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Reviews Cards (Facebook & TikTok Shop Verified Purchases) -->
+            <div id="feedback" class="mt-12 pt-8">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-aura-600 bg-aura-200/60 px-3 py-1 rounded-full">
+                        Người Thật • Trải Nghiệm Thật
+                    </span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-aura-900 mt-2 font-serif">Được Yêu Thích Bởi Hàng Ngàn Cô Nàng</h3>
+                    <p class="text-sm text-aura-700 mt-1">Đánh giá thực tế từ khách hàng đã mua qua TikTok & Facebook</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Review 1 -->
+                    <div class="bg-aura-50 p-6 rounded-2xl border border-aura-200 relative flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2">
+                                    <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Linh Đan">
+                                    <div>
+                                        <p class="text-sm font-bold text-aura-900">Linh Đan (24 tuổi)</p>
+                                        <p class="text-[11px] text-green-700 flex items-center gap-1 font-medium">
+                                            <i class="fa-solid fa-circle-check"></i> Đã mua tại TikTok
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text-amber-500 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-aura-800 leading-relaxed italic">
+                                “Ban đầu thấy video review trên TikTok mê quá nên đặt thử, ai ngờ chất vải sờ sướng tay dã man! Vải mềm rũ, mát rượi mà không hề lộ khuyết điểm bụng dưới. Đi làm hay cafe cuối tuần mặc ai cũng khen sang.”
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-aura-200/80 flex items-center justify-between text-xs text-aura-600">
+                            <span>Phân loại: Đầm Be Nude - Size M</span>
+                            <span class="text-[11px] text-neutral-400">2 ngày trước</span>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-aura-50 p-6 rounded-2xl border border-aura-200 relative flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2">
+                                    <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Phương Thảo">
+                                    <div>
+                                        <p class="text-sm font-bold text-aura-900">Phương Thảo (27 tuổi)</p>
+                                        <p class="text-[11px] text-green-700 flex items-center gap-1 font-medium">
+                                            <i class="fa-solid fa-circle-check"></i> Đã mua tại Facebook Page
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text-amber-500 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-aura-800 leading-relaxed italic">
+                                “Mình cao 1m58 nặng 51kg, mặc lên tôn eo thắt đáy lưng ong luôn. Đường chỉ may kỹ lưỡng, đóng gói hộp thơm tho như đồ hiệu 1-2 triệu. Rất đáng đồng tiền, sẽ ủng hộ shop dài dài!”
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-aura-200/80 flex items-center justify-between text-xs text-aura-600">
+                            <span>Phân loại: Set Blazer Nude + Chân Váy</span>
+                            <span class="text-[11px] text-neutral-400">Hôm qua</span>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-aura-50 p-6 rounded-2xl border border-aura-200 relative flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2">
+                                    <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=80" alt="Hà My">
+                                    <div>
+                                        <p class="text-sm font-bold text-aura-900">Hà My (Content Creator)</p>
+                                        <p class="text-[11px] text-green-700 flex items-center gap-1 font-medium">
+                                            <i class="fa-solid fa-circle-check"></i> Đã mua tại TikTok
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text-amber-500 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-aura-800 leading-relaxed italic">
+                                “Gam màu be nude của Aura Store cực kỳ tôn da người châu Á, lên hình video TikTok màu chuẩn sang tây. Mua đợt sale combo được giảm thêm voucher Facebook siêu hời.”
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-aura-200/80 flex items-center justify-between text-xs text-aura-600">
+                            <span>Phân loại: Áo Sơ Mi Lụa Cát Trắng Kem</span>
+                            <span class="text-[11px] text-neutral-400">4 ngày trước</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BƯỚC 3: FEATURES / BENEFITS (Kích thích quan tâm & Mong muốn - Interest & Desire)
+         ========================================== -->
+    <section id="features" class="py-16 lg:py-24 bg-aura-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-aura-700 bg-aura-200 px-3.5 py-1 rounded-full">
+                    GIẢI PHÁP THỜI TRANG ĐÍCH THỰC
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-aura-900 mt-3 font-serif whitespace-nowrap tracking-tight">
+                    Vì Sao AURA Là Lựa Chọn Của Nàng?
+                </h2>
+                <p class="text-base text-aura-700 mt-3">
+                    Không chỉ đơn thuần là quần áo, Aura mang đến sự tự tin vô điều kiện nhờ 3 trụ cột thiết kế độc quyền.
+                </p>
+            </div>
+
+            <!-- 3 Core Pillars -->
+            <div class="space-y-16">
+                
+                <!-- Trụ Cột 1: Chất Liệu Voan Mềm Mại -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    <div class="lg:col-span-6 order-2 lg:order-1">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-aura-200">
+                            <img src="vải voan.jpg" 
+                                 alt="Chất Liệu Voan Mềm Mại: Nhẹ Như Làn Gió Aura Store" 
+                                 class="w-full h-80 sm:h-96 object-cover hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-semibold text-aura-900 shadow">
+                                <i class="fa-solid fa-feather text-aura-600 mr-1"></i> Voan mềm nhẹ, độ rũ bay bổng tự nhiên
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 space-y-4 order-1 lg:order-2">
+                        <div class="inline-flex items-center gap-2 text-aura-700 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-6 h-0.5 bg-aura-600"></span> Trụ Cột 01 • Trải Nghiệm Chạm
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-aura-900 font-serif">
+                            Chất Liệu Voan Mềm Mại: Nhẹ Như Làn Gió, Tôn Trọn Vẻ Nữ Tính
+                        </h3>
+                        <p class="text-aura-800 text-sm sm:text-base leading-relaxed">
+                            AURA lựa chọn chất liệu voan nhẹ, mềm và có độ rũ tự nhiên, tạo cảm giác bay bổng, thoải mái khi mặc. Từng lớp vải chuyển động nhẹ nhàng theo cơ thể, giúp tôn lên đường nét và vẻ nữ tính một cách tinh tế – phù hợp cho những khoảnh khắc nàng muốn trở nên thật cuốn hút.
+                        </p>
+                        <ul class="space-y-2 text-sm text-aura-800 font-medium pt-2">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-aura-700"></i> Bề mặt mềm mại, nhẹ tênh, mang đến cảm giác thoải mái và nữ tính.
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-aura-700"></i> Độ rũ và độ bay tự nhiên, tạo hiệu ứng chuyển động duyên dáng khi bước đi.
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-aura-700"></i> Thiết kế tôn dáng tinh tế, giúp nàng khoe nét đẹp riêng mà vẫn giữ được sự thanh thoát.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Trụ Cột 2: Kỹ Thuật May Đo Tôn Dáng -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-aura-700 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-6 h-0.5 bg-aura-600"></span> Trụ Cột 02 • Tỉ Lệ Cơ Thể Vàng
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-aura-900 font-serif">
+                            Form Dáng Chuẩn "Hack" Vòng Eo: Tôn Trọn Đường Cong Tự Nhiên
+                        </h3>
+                        <p class="text-aura-800 text-sm sm:text-base leading-relaxed">
+                            Mỗi sản phẩm trải qua hơn <strong>15 lần fitting thử nghiệm</strong> trên vóc dáng phụ nữ Việt. Đường cắt cúp eo cao giấu gọn khuyết điểm bụng dưới, nẹp ngực tinh tế và xếp ly nhẹ nhàng tạo hiệu ứng chân dài miên man mà không gây cảm giác siết chặt khó chịu.
+                        </p>
+                        <ul class="space-y-2 text-sm text-aura-800 font-medium pt-2">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-aura-700"></i> Giấu triệt để khuyết điểm bắp tay và eo bánh mì.
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-aura-700"></i> Tạo thị giác thắt đáy lưng ong đầy quyến rũ, nữ tính.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-aura-200">
+                            <img src="tỉ lệ cơ thể.jpg" 
+                                 alt="Form dáng chuẩn tỉ lệ cơ thể vàng Aura Store" 
+                                 class="w-full h-80 sm:h-96 object-cover hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-semibold text-aura-900 shadow">
+                                <i class="fa-solid fa-wand-magic-sparkles text-aura-600 mr-1"></i> Hiệu ứng thon gọn tức thì 3-5cm vòng eo
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trụ Cột 3: Tính Ứng Dụng Cao (Versatility) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    <div class="lg:col-span-6 order-2 lg:order-1">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-aura-200">
+                            <img src="3 outfit.jpg" 
+                                 alt="3 outfit đa phong cách Aura Store" 
+                                 class="w-full h-80 sm:h-96 object-cover hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-semibold text-aura-900 shadow">
+                                <i class="fa-solid fa-repeat text-aura-600 mr-1"></i> Mix & Match dễ dàng với tủ đồ sẵn có
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 space-y-4 order-1 lg:order-2">
+                        <div class="inline-flex items-center gap-2 text-aura-700 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-6 h-0.5 bg-aura-600"></span> Trụ Cột 03 • Tối Giản Thông Minh
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-aura-900 font-serif">
+                            1 Thiết Kế - 3 Phong Cách: Đi Làm Thanh Lịch, Dạo Phố Tinh Tế, Dự Tiệc Kiêu Kỳ
+                        </h3>
+                        <p class="text-aura-800 text-sm sm:text-base leading-relaxed">
+                            Bạn không cần một tủ đồ chất đống nhưng mỗi sáng vẫn loay hoay "không có gì để mặc". Với bảng màu trung tính <em>Be ấm, Trắng kem, Nude thanh thuần</em>, nàng dễ dàng biến hóa: khoác blazer đi họp, phối sneaker dạo phố hay thêm phụ kiện lấp lánh cho buổi tiệc tối lãng mạn.
+                        </p>
+                        <div class="grid grid-cols-3 gap-2 pt-2 text-center">
+                            <div class="bg-white p-2.5 rounded-xl border border-aura-200">
+                                <i class="fa-solid fa-briefcase text-aura-700 text-sm mb-1"></i>
+                                <p class="text-xs font-bold text-aura-900">Office Chic</p>
+                                <p class="text-[10px] text-aura-600">Chuyên nghiệp</p>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-aura-200">
+                                <i class="fa-solid fa-mug-saucer text-aura-700 text-sm mb-1"></i>
+                                <p class="text-xs font-bold text-aura-900">Weekend Cafe</p>
+                                <p class="text-[10px] text-aura-600">Thư thái nhẹ nhàng</p>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-aura-200">
+                                <i class="fa-solid fa-champagne-glasses text-aura-700 text-sm mb-1"></i>
+                                <p class="text-xs font-bold text-aura-900">Evening Party</p>
+                                <p class="text-[10px] text-aura-600">Quyến rũ nổi bật</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BEST-SELLER SHOWCASE (Sản phẩm nổi bật với nút mua Facebook/TikTok)
+         ========================================== -->
+    <section id="bestseller" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-aura-600 bg-aura-100 px-3 py-1 rounded-full">
+                        HOT PICKS OF THE MONTH
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-aura-900 mt-2 font-serif">Top Sản Phẩm Cháy Hàng Nhất</h2>
+                    <p class="text-sm text-aura-700 mt-1">Được săn đón nhiều nhất trên phiên livestream TikTok và kênh Facebook</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center gap-2 text-xs font-medium text-aura-700">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                    <span>Kho hàng đang cập nhật liên tục • Còn số lượng ít</span>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Product Card 1 -->
+                <div class="group bg-aura-50 rounded-2xl overflow-hidden border border-aura-200 hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-aura-200">
+                        <img src="Đầm hồng cúp ngực đính nơ.jpg" 
+                             alt="Đầm hồng cúp ngực đính nơ Aura Store" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
+                            -42% FLASH SALE
+                        </span>
+                        <span class="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-[11px] font-medium px-2 py-1 rounded-md">
+                            Đã bán 1.4k
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-1.5">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="font-bold text-aura-900">4.9</span>
+                                <span class="text-neutral-400">(428 đánh giá)</span>
+                            </div>
+                            <h3 class="text-base font-bold text-aura-900 group-hover:text-aura-700 transition">
+                                Đầm hồng cúp ngực đính nơ
+                            </h3>
+                            <p class="text-xs text-aura-600 mt-1">Chất liệu vải taffeta bóng nhẹ, đứng dáng.</p>
+                            
+                            <div class="mt-3 flex items-baseline gap-2">
+                                <span class="text-xl font-extrabold text-red-600">389.000₫</span>
+                                <span class="text-sm text-neutral-400 line-through">670.000₫</span>
+                            </div>
+
+                            <!-- Progress Stock Bar -->
+                            <div class="mt-3">
+                                <div class="flex justify-between text-[11px] font-medium text-aura-700 mb-1">
+                                    <span>Đã bán 89/100 chiếc hôm nay</span>
+                                    <span class="text-red-600 font-bold">Chỉ còn 11 suất</span>
+                                </div>
+                                <div class="w-full bg-aura-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-red-500 h-2 rounded-full w-[89%]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buy Action Buttons -->
+                        <div class="mt-5 grid grid-cols-2 gap-2 pt-3 border-t border-aura-200">
+                            <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+                                class="py-2.5 px-3 rounded-xl bg-black text-white text-xs font-bold hover:bg-neutral-800 transition flex items-center justify-center gap-1.5 text-center shadow-sm">
+                                <i class="fa-brands fa-tiktok"></i> TikTok
+                            </a>
+                            <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                               class="py-2.5 px-3 rounded-xl bg-facebook text-white text-xs font-bold hover:opacity-90 transition flex items-center justify-center gap-1.5 text-center shadow-sm">
+                                <i class="fa-brands fa-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="group bg-aura-50 rounded-2xl overflow-hidden border border-aura-200 hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-aura-200">
+                        <img src="Set ren đen tiểu thư.jpg" 
+                             alt="Set ren đen tiểu thư Aura Store" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
+                            -38% HOT
+                        </span>
+                        <span class="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-[11px] font-medium px-2 py-1 rounded-md">
+                            Đã bán 890+
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-1.5">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="font-bold text-aura-900">5.0</span>
+                                <span class="text-neutral-400">(315 đánh giá)</span>
+                            </div>
+                            <h3 class="text-base font-bold text-aura-900 group-hover:text-aura-700 transition">
+                                Set ren đen tiểu thư
+                            </h3>
+                            <p class="text-xs text-aura-600 mt-1">Chất liệu vải ren hoa sang trọng, quyến rũ.</p>
+                            
+                            <div class="mt-3 flex items-baseline gap-2">
+                                <span class="text-xl font-extrabold text-red-600">469.000₫</span>
+                                <span class="text-sm text-neutral-400 line-through">750.000₫</span>
+                            </div>
+
+                            <!-- Progress Stock Bar -->
+                            <div class="mt-3">
+                                <div class="flex justify-between text-[11px] font-medium text-aura-700 mb-1">
+                                    <span>Đã bán 74/80 set</span>
+                                    <span class="text-red-600 font-bold">Chỉ còn 6 set</span>
+                                </div>
+                                <div class="w-full bg-aura-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-red-500 h-2 rounded-full w-[92%]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buy Action Buttons -->
+                        <div class="mt-5 grid grid-cols-2 gap-2 pt-3 border-t border-aura-200">
+                            <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+                               class="py-2.5 px-3 rounded-xl bg-black text-white text-xs font-bold hover:bg-neutral-800 transition flex items-center justify-center gap-1.5 text-center shadow-sm">
+                                <i class="fa-brands fa-tiktok"></i> TikTok
+                            </a>
+                            <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                               class="py-2.5 px-3 rounded-xl bg-facebook text-white text-xs font-bold hover:opacity-90 transition flex items-center justify-center gap-1.5 text-center shadow-sm">
+                                <i class="fa-brands fa-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="group bg-aura-50 rounded-2xl overflow-hidden border border-aura-200 hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-aura-200">
+                        <img src="Set cổ yếm phối chân váy đen..jpg" 
+                             alt="Set cổ yếm phối chân váy đen Aura Store" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">
+                            -45% TẶNG QUÀ
+                        </span>
+                        <span class="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-[11px] font-medium px-2 py-1 rounded-md">
+                            Đã bán 2.1k
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-1.5">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="font-bold text-aura-900">4.9</span>
+                                <span class="text-neutral-400">(680 đánh giá)</span>
+                            </div>
+                            <h3 class="text-base font-bold text-aura-900 group-hover:text-aura-700 transition">
+                                Set cổ yếm phối chân váy đen
+                            </h3>
+                            <p class="text-xs text-aura-600 mt-1">Chất liệu vải lụa satin bóng nhẹ.</p>
+                            
+                            <div class="mt-3 flex items-baseline gap-2">
+                                <span class="text-xl font-extrabold text-red-600">289.000₫</span>
+                                <span class="text-sm text-neutral-400 line-through">520.000₫</span>
+                            </div>
+
+                            <!-- Progress Stock Bar -->
+                            <div class="mt-3">
+                                <div class="flex justify-between text-[11px] font-medium text-aura-700 mb-1">
+                                    <span>Đã bán 138/150 chiếc</span>
+                                    <span class="text-red-600 font-bold">Chỉ còn 12 chiếc</span>
+                                </div>
+                                <div class="w-full bg-aura-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-red-500 h-2 rounded-full w-[94%]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buy Action Buttons -->
+                        <div class="mt-5 grid grid-cols-2 gap-2 pt-3 border-t border-aura-200">
+                            <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+                               class="py-2.5 px-3 rounded-xl bg-black text-white text-xs font-bold hover:bg-neutral-800 transition flex items-center justify-center gap-1.5 text-center shadow-sm">
+                                <i class="fa-brands fa-tiktok"></i> TikTok
+                            </a>
+                            <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                               class="py-2.5 px-3 rounded-xl bg-facebook text-white text-xs font-bold hover:opacity-90 transition flex items-center justify-center gap-1.5 text-center shadow-sm">
+                                <i class="fa-brands fa-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BƯỚC 4: OFFER & PRICE (Tạo động lực mua hàng ngay - Action)
+         ========================================== -->
+    <section id="offer" class="py-16 lg:py-24 bg-gradient-to-br from-aura-900 via-aura-800 to-aura-900 text-aura-50 relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -top-20 w-96 h-96 bg-aura-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            
+            <!-- Urgent Tag -->
+            <div class="text-center">
+                <span class="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/40 text-red-300 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-4 animate-pulse">
+                    <i class="fa-solid fa-fire text-red-400"></i> CHƯƠNG TRÌNH RA MẮT ĐỘC QUYỀN
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif tracking-tight">
+                    Combo "Nàng Thơ Thanh Lịch"
+                </h2>
+                <p class="text-aura-200 mt-2 text-sm sm:text-base max-w-xl mx-auto">
+                    Trọn gói nâng tầm phong cách: Tặng kèm Cài Áo Mạ Vàng + Voucher 50k + Freeship cho 50 khách hàng đầu tiên.
+                </p>
+            </div>
+
+            <!-- Urgent Countdown Box -->
+            <div class="mt-8 max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/15 text-center">
+                <p class="text-xs uppercase tracking-widest text-aura-300 font-medium mb-3">Ưu đãi đóng lại sau:</p>
+                <div class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-aura-900/80 p-2.5 rounded-xl border border-white/10">
+                        <span id="hours" class="block text-2xl sm:text-3xl font-extrabold text-amber-300 font-mono">03</span>
+                        <span class="text-[10px] text-aura-300 uppercase">Giờ</span>
+                    </div>
+                    <div class="bg-aura-900/80 p-2.5 rounded-xl border border-white/10">
+                        <span id="minutes" class="block text-2xl sm:text-3xl font-extrabold text-amber-300 font-mono">42</span>
+                        <span class="text-[10px] text-aura-300 uppercase">Phút</span>
+                    </div>
+                    <div class="bg-aura-900/80 p-2.5 rounded-xl border border-white/10">
+                        <span id="seconds" class="block text-2xl sm:text-3xl font-extrabold text-amber-300 font-mono">15</span>
+                        <span class="text-[10px] text-aura-300 uppercase">Giây</span>
+                    </div>
+                    <div class="bg-aura-900/80 p-2.5 rounded-xl border border-white/10">
+                        <span id="millis" class="block text-2xl sm:text-3xl font-extrabold text-amber-300 font-mono">89</span>
+                        <span class="text-[10px] text-aura-300 uppercase">Mili-giây</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offer Value Card -->
+            <div class="mt-10 bg-aura-50 text-aura-900 rounded-3xl p-6 sm:p-10 shadow-2xl border border-aura-300 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left: Bundle Detail -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-block bg-amber-100 text-amber-900 text-xs font-extrabold px-3 py-1 rounded-md">
+                            TIẾT KIỆM NGAY 390.000₫
+                        </div>
+                        <h3 class="text-2xl font-bold font-serif">Combo Ra Mắt: 01 Đầm Tôn Dáng + 01 Sơ Mi Lụa Cát</h3>
+                        <p class="text-sm text-aura-700 leading-relaxed">
+                            Chỉ cần đầu tư 1 lần, nàng sở hữu 2 siêu phẩm cốt lõi dễ phối nhất của BST Aura 2026. Phù hợp cho mọi dịp từ công sở đến hẹn hò.
+                        </p>
+
+                        <div class="space-y-2.5 pt-2 text-xs sm:text-sm font-medium text-aura-800">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-gift text-red-500"></i>
+                                <span>Tặng <strong>Cài áo ngọc trai mạ vàng</strong> trị giá 120.000₫ (quà tặng kèm)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-ticket text-amber-600"></i>
+                                <span>Áp dụng <strong>Voucher giảm thêm 50.000₫</strong> trực tiếp khi thanh toán</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-truck-ramp-box text-green-600"></i>
+                                <span>Miễn phí vận chuyển toàn quốc (Freeship Xtra)</span>
+                            </div>
+                        </div>
+
+                        <!-- Special Price Breakdown -->
+                        <div class="pt-4 border-t border-aura-200">
+                            <p class="text-xs text-neutral-500">Giá gốc niêm yết: <span class="line-through">980.000₫</span></p>
+                            <div class="flex items-baseline gap-3 mt-1">
+                                <span class="text-3xl sm:text-4xl font-extrabold text-red-600">590.000₫</span>
+                                <span class="text-xs sm:text-sm bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">GIẢM 40%</span>
+                                <span class="text-xs text-neutral-500 font-normal">(Đã bao gồm VAT & Quà tặng)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Direct CTA to TikTok Shop & Facebook -->
+                    <div class="lg:col-span-5 bg-aura-100 p-6 rounded-2xl border border-aura-300 text-center space-y-4">
+                        <p class="text-xs font-bold uppercase tracking-wider text-aura-800">CHỌN NỀN TẢNG BẠN MUỐN MUA:</p>
+                        
+                        <!-- CTA 1: Facebook -->
+                        <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+                           class="w-full py-4 px-6 rounded-xl bg-facebook text-white font-bold text-sm sm:text-base hover:bg-blue-600 transition flex items-center justify-center gap-2 shadow-lg transform active:scale-95">
+                            <i class="fa-brands fa-facebook text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-[11px] font-normal leading-tight opacity-90">Tư vấn chọn size & Đặt hàng ngay</div>
+                                <div class="font-bold">MUA NGAY QUA FACEBOOK</div>
+                            </div>
+                        </a>
+
+                        <!-- CTA 2: TikTok Shop -->
+                        <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+                            class="w-full py-4 px-6 rounded-xl bg-black text-white font-bold text-sm sm:text-base hover:bg-neutral-800 transition flex items-center justify-center gap-2 shadow-lg transform active:scale-95">
+                            <i class="fa-brands fa-tiktok text-xl"></i>
+                            <div class="text-left">
+                                <div class="text-[11px] font-normal leading-tight opacity-90">Voucher người mới + Trợ giá Livestream</div>
+                                <div class="font-bold">MUA NGAY QUA TIKTOK</div>
+                            </div>
+                        </a>
+
+                        <!-- Micro text guarantee -->
+                        <p class="text-[11px] text-aura-600 flex items-center justify-center gap-1.5 pt-1">
+                            <i class="fa-solid fa-lock text-green-600"></i> Bảo mật 100% & kiểm tra hàng trước khi nhận
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-8 text-center text-xs text-aura-300">
+                ⚡ Đang có <span class="font-bold text-amber-300">14 người</span> đang xem sản phẩm này cùng lúc trên Facebook & TikTok
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BƯỚC 5: FOOTER & TRUST (Cung cấp an toàn - Reassurance)
+         ========================================== -->
+    <footer id="footer" class="bg-aura-900 text-aura-200 border-t border-aura-800 pt-16 pb-24 md:pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Policy / Reassurance Pillars Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12 border-b border-aura-800">
+                <div class="space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-aura-800 text-amber-300 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">Chính Sách Đổi Trả 7 Ngày Dễ Dàng</h4>
+                    <p class="text-xs text-aura-300 leading-relaxed">
+                        Hỗ trợ đổi size hoặc đổi mẫu miễn phí trong 7 ngày nếu không vừa vặn hoặc không ưng ý chất liệu. Shipper đến tận nhà thu hồi, khách hàng không cần tốn công ra bưu cục.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-aura-800 text-amber-300 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">Bảo Mật & Minh Bạch 100%</h4>
+                    <p class="text-xs text-aura-300 leading-relaxed">
+                        Mọi đơn hàng đều được xử lý và bảo vệ qua hệ sinh thái của Facebook và TikTok, bảo vệ quyền lợi hoàn tiền 100% nếu có bất kỳ sai sót nào.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-10 h-10 rounded-lg bg-aura-800 text-amber-300 flex items-center justify-center text-lg mb-3">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">Chăm Sóc & Tư Vấn Thần Tốc</h4>
+                    <p class="text-xs text-aura-300 leading-relaxed">
+                        Đội ngũ Stylist của Aura túc trực 24/7 qua tin nhắn Facebook / TikTok / Zalo để tư vấn bảng size chuẩn xác theo số đo 3 vòng của bạn.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Details & Copyright -->
+            <div class="pt-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-3">
+                    <span class="font-serif text-2xl tracking-widest uppercase font-bold text-white">AURA STORE</span>
+                    <p class="text-xs text-aura-400 leading-relaxed">
+                        Thương hiệu thời trang nữ thiết kế phong cách tối giản và thanh lịch, đồng hành cùng hàng ngàn cô gái trên hành trình khẳng định khí chất riêng.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" class="w-8 h-8 rounded-full bg-aura-800 hover:bg-black text-white flex items-center justify-center transition text-sm">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" class="w-8 h-8 rounded-full bg-aura-800 hover:bg-blue-600 text-white flex items-center justify-center transition text-sm">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" class="w-8 h-8 rounded-full bg-aura-800 hover:bg-pink-600 text-white flex items-center justify-center transition text-sm">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Hỗ Trợ Khách Hàng -->
+                <div>
+                    <h5 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Hỗ Trợ Khách Hàng</h5>
+                    <ul class="space-y-2 text-xs text-aura-400">
+                        <li><a href="#features" class="hover:text-amber-200 transition">Hướng dẫn chọn size chuẩn</a></li>
+                        <li><a href="#social-proof" class="hover:text-amber-200 transition">Chính sách đồng kiểm khi nhận</a></li>
+                        <li><a href="#footer" class="hover:text-amber-200 transition">Quy trình đổi trả hàng 7 ngày</a></li>
+                        <li><a href="#offer" class="hover:text-amber-200 transition">Hướng dẫn nhận ưu đãi Facebook/TikTok</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Kênh Mua Hàng Chính Hãng -->
+                <div>
+                    <h5 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Kênh Mua Hàng Chính Hãng</h5>
+                    <ul class="space-y-2 text-xs text-aura-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-tiktok text-white"></i>
+                            <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" class="hover:text-amber-200 transition">TikTok: @aura.store864</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-facebook text-facebook"></i>
+                            <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" class="hover:text-amber-200 transition">Fanpage Facebook: Aura Store Vietnam</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-aura-400"></i>
+                            <span>Email: contact@aurastore.vn</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-aura-400"></i>
+                            <span>Hotline: 0988.xxx.xxx (8:30 - 22:00)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Cam kết an toàn -->
+                <div>
+                    <h5 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Chứng Nhận Uy Tín</h5>
+                    <div class="space-y-2 text-xs text-aura-400">
+                        <div class="inline-flex items-center gap-2 bg-aura-800 px-3 py-1.5 rounded-lg text-[11px] text-aura-200 border border-aura-700">
+                            <i class="fa-solid fa-circle-check text-green-400"></i> Facebook Official Store Verified
+                        </div>
+                        <div class="inline-flex items-center gap-2 bg-aura-800 px-3 py-1.5 rounded-lg text-[11px] text-aura-200 border border-aura-700">
+                            <i class="fa-solid fa-circle-check text-green-400"></i> TikTok Official Brand Partner
+                        </div>
+                        <p class="text-[11px] text-aura-400 mt-2">Bảo mật thông tin khách hàng tuyệt đối theo tiêu chuẩn SSL.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="mt-12 pt-6 border-t border-aura-800 text-center text-xs text-aura-500">
+                <p>© 2026 Aura Store. Bản quyền thuộc về Aura Store. Thiết kế tối ưu chuyển đổi & giao diện người dùng hiện đại.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         STICKY BOTTOM MOBILE BUY BAR (Tối Ưu Chuyển Đổi Mobile 85% Traffic)
+         ========================================== -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-aura-200 p-2.5 shadow-2xl flex items-center gap-2">
+        <div class="flex-1">
+            <span class="text-[10px] text-aura-600 block leading-none">Ưu đãi hôm nay</span>
+            <div class="flex items-baseline gap-1">
+                <span class="text-sm font-extrabold text-red-600">389k</span>
+                <span class="text-[10px] text-neutral-400 line-through">650k</span>
+                <span class="text-[9px] bg-red-100 text-red-700 px-1 rounded font-bold">-40%</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-1.5">
+            <a href="https://www.tiktok.com/@aura.store864?_r=1&_t=ZS-9A9vmnM41tV" target="_blank" rel="noopener noreferrer" 
+               class="px-3.5 py-2.5 bg-black text-white text-xs font-bold rounded-xl flex items-center gap-1 shadow-sm active:scale-95 transition">
+                <i class="fa-brands fa-tiktok text-sm"></i> TikTok
+            </a>
+            <a href="https://www.facebook.com/share/18T7yoiZ8p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" 
+               class="px-3.5 py-2.5 bg-facebook text-white text-xs font-bold rounded-xl flex items-center gap-1 shadow-sm active:scale-95 transition">
+                <i class="fa-brands fa-facebook text-sm"></i> Facebook
+            </a>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: Real-time Countdown Timer & Interactive Logic -->
+    <script>
+        // Đồng hồ đếm ngược 4 tiếng tính cấp bách
+        const initialSeconds = (3 * 3600) + (42 * 60) + 15;
+        let totalSeconds = initialSeconds;
+
+        function updateCountdown() {
+            const h = Math.floor(totalSeconds / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = Math.floor(totalSeconds % 60);
+            
+            const formattedH = String(h).padStart(2, '0');
+            const formattedM = String(m).padStart(2, '0');
+            const formattedS = String(s).padStart(2, '0');
+
+            const bannerEl = document.getElementById('banner-countdown');
+            if (bannerEl) {
+                bannerEl.textContent = `${formattedH}:${formattedM}:${formattedS}`;
+            }
+
+            const elH = document.getElementById('hours');
+            const elM = document.getElementById('minutes');
+            const elS = document.getElementById('seconds');
+
+            if (elH) elH.textContent = formattedH;
+            if (elM) elM.textContent = formattedM;
+            if (elS) elS.textContent = formattedS;
+
+            if (totalSeconds > 0) {
+                totalSeconds--;
+            } else {
+                totalSeconds = initialSeconds; // reset cycle
+            }
+        }
+
+        // Milliseconds visual effect for hyper urgency
+        let ms = 99;
+        setInterval(() => {
+            const elMs = document.getElementById('millis');
+            if (elMs) {
+                ms = ms <= 1 ? 99 : ms - 1;
+                elMs.textContent = String(ms).padStart(2, '0');
+            }
+        }, 30);
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Smooth active navigation
+        console.log("Aura Store High-Converting Landing Page Initialized.");
+    </script>
+
+</body>
+</html>
